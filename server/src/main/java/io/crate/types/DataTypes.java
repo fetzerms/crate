@@ -108,7 +108,8 @@ public final class DataTypes {
         INTERVAL,
         LONG,
         TIMESTAMPZ,
-        TIMESTAMP
+        TIMESTAMP,
+        TIME
     );
 
     public static final Set<DataType> STORAGE_UNSUPPORTED = Set.of(
