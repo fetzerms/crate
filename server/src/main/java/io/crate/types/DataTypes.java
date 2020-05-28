@@ -69,7 +69,7 @@ public final class DataTypes {
     public static final IntegerType INTEGER = IntegerType.INSTANCE;
     public static final LongType LONG = LongType.INSTANCE;
 
-    public static final TimeType TIME = TimeType.INSTANCE;
+    public static final TimeZType TIMEZ = TimeZType.INSTANCE;
 
     public static final TimestampType TIMESTAMPZ = TimestampType.INSTANCE_WITH_TZ;
     public static final TimestampType TIMESTAMP = TimestampType.INSTANCE_WITHOUT_TZ;
@@ -92,7 +92,7 @@ public final class DataTypes {
     public static Set<String> PRIMITIVE_TYPE_NAMES_WITH_SPACES = Set.of(
         TIMESTAMPZ.getName(),
         TIMESTAMP.getName(),
-        TIME.getName(),
+        TIMEZ.getName(),
         DOUBLE.getName()
     );
 
@@ -109,11 +109,11 @@ public final class DataTypes {
         LONG,
         TIMESTAMPZ,
         TIMESTAMP,
-        TIME
+        TIMEZ
     );
 
     public static final Set<DataType> STORAGE_UNSUPPORTED = Set.of(
-        INTERVAL, TIME
+        INTERVAL, TIMEZ
     );
 
     public static final List<DataType> NUMERIC_PRIMITIVE_TYPES = List.of(
@@ -141,7 +141,7 @@ public final class DataTypes {
             entry(ShortType.ID, in -> SHORT),
             entry(IntegerType.ID, in -> INTEGER),
             entry(LongType.ID, in -> LONG),
-            entry(TimeType.ID, in -> TIME),
+            entry(TimeZType.ID, in -> TIMEZ),
             entry(TimestampType.ID_WITH_TZ, in -> TIMESTAMPZ),
             entry(TimestampType.ID_WITHOUT_TZ, in -> TIMESTAMP),
             entry(ObjectType.ID, ObjectType::new),
@@ -169,7 +169,7 @@ public final class DataTypes {
         entry(DOUBLE.id(), NUMBER_CONVERSIONS),
         entry(BOOLEAN.id(), Set.of(STRING.id())),
         entry(STRING.id(), Stream.concat(
-            Stream.of(GEO_SHAPE.id(), GEO_POINT.id(), ObjectType.ID, TimeType.ID),
+            Stream.of(GEO_SHAPE.id(), GEO_POINT.id(), ObjectType.ID, TimeZType.ID),
             NUMBER_CONVERSIONS.stream()
         ).collect(toSet())),
         entry(IP.id(), Set.of(STRING.id())),
@@ -321,7 +321,7 @@ public final class DataTypes {
         entry(INTEGER.getName(), INTEGER),
         entry(LONG.getName(), LONG),
         entry(RowType.EMPTY.getName(), RowType.EMPTY),
-        entry(TIME.getName(), TIME),
+        entry(TIMEZ.getName(), TIMEZ),
         entry(TIMESTAMPZ.getName(), TIMESTAMPZ),
         entry(TIMESTAMP.getName(), TIMESTAMP),
         entry(ObjectType.NAME, UNTYPED_OBJECT),
@@ -341,7 +341,7 @@ public final class DataTypes {
         entry("string", STRING),
         entry("varchar", STRING),
         entry("character varying", STRING),
-        entry("time", TIME),
+        entry("timez", TIMEZ),
         entry("timestamptz", TIMESTAMPZ),
         // The usage of the `timestamp` data type as a data type with time
         // zone is deprecate, use `timestamp with time zone` or `timestamptz`
@@ -367,8 +367,8 @@ public final class DataTypes {
     }
 
     private static final Map<String, DataType> MAPPING_NAMES_TO_TYPES = Map.ofEntries(
-        entry("time", DataTypes.TIME),
-        entry(DataTypes.TIME.getName(), DataTypes.TIME),
+        entry(DataTypes.TIMEZ.getName(), DataTypes.TIMEZ),
+        entry("timez", DataTypes.TIMEZ),
         entry("date", DataTypes.TIMESTAMPZ),
         entry("string", DataTypes.STRING),
         entry("keyword", DataTypes.STRING),
