@@ -341,7 +341,6 @@ public final class DataTypes {
         entry("string", STRING),
         entry("varchar", STRING),
         entry("character varying", STRING),
-        entry("timez", TIMEZ),
         entry("timestamptz", TIMESTAMPZ),
         // The usage of the `timestamp` data type as a data type with time
         // zone is deprecate, use `timestamp with time zone` or `timestamptz`
@@ -368,7 +367,6 @@ public final class DataTypes {
 
     private static final Map<String, DataType> MAPPING_NAMES_TO_TYPES = Map.ofEntries(
         entry(DataTypes.TIMEZ.getName(), DataTypes.TIMEZ),
-        entry("timez", DataTypes.TIMEZ),
         entry("date", DataTypes.TIMESTAMPZ),
         entry("string", DataTypes.STRING),
         entry("keyword", DataTypes.STRING),
